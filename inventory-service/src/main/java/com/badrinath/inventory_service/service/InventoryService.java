@@ -1,9 +1,11 @@
 package com.badrinath.inventory_service.service;
 
 import com.badrinath.inventory_service.entity.Event;
+import com.badrinath.inventory_service.entity.Venue;
 import com.badrinath.inventory_service.repository.EventRepository;
 import com.badrinath.inventory_service.repository.VenueRepository;
 import com.badrinath.inventory_service.response.EventInventoryResponse;
+import com.badrinath.inventory_service.response.VenueInventoryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,15 @@ public class InventoryService {
                         .venue(event.getVenue())
                         .build())
                         .collect(Collectors.toList());
+    }
+
+    public VenueInventoryResponse getVenueinformation(final Long venueId) {
+        Venue venue = venueRepository.findById(venueId).orElse(null);
+
+        return VenueInventoryResponse.builder()
+                .venueId(venue.getId())
+                .venueName(venue.getName())
+                .totalCapacity(venue.getTotalCapacity())
+                .build();
     }
 }
