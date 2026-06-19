@@ -1,2 +1,2 @@
-CREATE DATABASE IF NOT exits ticketing;
+CREATE DATABASE IF NOT exists ticketing;
 USE ticketing;
